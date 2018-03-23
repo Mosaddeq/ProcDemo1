@@ -11,17 +11,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $uType =  $_POST['uType'];
     
     include ("funct.php");
-    include ("dbconnect.php");
-    include ("validation.php");
-    
-   
+    require ("dbconnect.php");
+    require ("validation.php");
+
+    $sql = "insert into reg values ('".$name."','".$email."','".$gender."','".$pass."','".$uType."')";
 }
-
-
 ?>
-
-
-
 <!DOCTYPE HTML>
 
 <html>
@@ -35,16 +30,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 <div>
 
 <form method="POST" action="#">   <!$_SERVER["PHP_SELF"]Returns the filename of the currently executing script> 
-
-	Name: <br>
+    Name: <br>
 	<input type="text" name="name" value="" placeholder="Full Name"/>
 	<span class="error">* <?php echo $nameErr;?></span>								<! display errors on html page>
-	
 	<br>
 	<br>
-	
 	Email: <br>
-		
 		<input type="text" name="email" value="" placeholder="********@****.com" />
 		<span class="error">* <?php echo $emailErr;?></span>	
 		<br>
@@ -54,20 +45,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		<input type="radio" name="gender" value="Male">Male
 		<span class="error">* <?php echo $genderErr;?></span>	
 		<br><br>
-	
 	Password:<br>
-
-		<input type="password" name="pass" value="" placeholder="*********"/>
+	<input type="password" name="pass" value="" placeholder="*********"/>
 		<span class="error">* <?php echo $passErr;?></span>	
 		<br>
 		<br>
-	
 	Confirm Password:<br>
 		<input type="password" name="confirm" value="" placeholder="*********"/>
 		<span class="error">* <?php echo $confirmErr;?></span>	
 		<br>
 		<br>
-	
 	User Type:
 		<select value="combo" name="uType" >
 		<option value=""></option>
@@ -77,13 +64,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		</select>
 		<br>
 		<br>
-	
-	
-		<input type="checkbox" name="check" value="checked" placeholder="" />Yes,I've read the <a href="terms and conditions.html">terms and conditions </a> and i agree
+        <input type="checkbox" name="check" value="checked" placeholder="" />Yes,I've read the <a href="terms and conditions.html">terms and conditions </a> and i agree
 		<span class="error">* <?php echo $checkErr;?></span>	
 		<br>
 		<br>
-		
-		
 		<input type="submit" name="submit" value="submit"/>
+
+        <?php include ("foot.php"); ?>
 		
