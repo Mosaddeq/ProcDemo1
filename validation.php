@@ -44,6 +44,7 @@ if(empty ($_POST["name"])){
     
     if($is_err==0){
         mysqli_query($conn,$sql);
-        mysqli_close($conn);	
+        mysqli_close($conn);
+	header('location: login.php');	
     }
 ?>
