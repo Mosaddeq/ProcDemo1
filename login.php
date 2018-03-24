@@ -9,32 +9,43 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     
     $sql = "SELECT * FROM reg WHERE email='$email' and password = '$pass'";
     $result = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($result);
+	$count = mysqli_num_rows($result);
+	$row = mysqli_fetch_assoc($result);
 
-    If($count==1)
+    If(count($row)>0 && $row['uType']=='Instructor')
     {
-        echo 'yaaaa';
-        header('location: loghome.php');
+		//echo 'yaaaa';
+		$_SESSION['email']=$email;
+		$_SESSION['password']=$pass;
+		$_SESSION['uType']= 'Instructor';
+        header('location: instructhome.php');
     }
-    else{echo 'boo';}
+	else if(count($row)>0 && $row['uType']=='Student')
+	{
+		//echo 'boo';
+		$_SESSION['email']=$email;
+		$_SESSION['password']=$pass;
+		$_SESSION['uType']= 'Instructor';
+        header('location: studenthome.php');
+	}
 }
 
 
 
 ?>
-
+<link rel="stylesheet" type="text/css" href="style.css">
 <right>
 <form action="login.php" method="POST">
 	<table border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td>
 				<fieldset>
-					<legend><h3>LOGIN</h3></legend>
-					Email<br/>
-					<input name="email" value="" type="email" required><br/>                               
-					Password<br/>
+					<legend><h3>Login</h3></legend>
+					Email
+					<input name="email" value="" type="email" required>                               
+					Password
 					<input name="pass" value="" type="password" required>
-					<br /><hr/>
+					
 					<input type="submit" value="Login">
 					<a href="registration.php">Register</a>
 				</fieldset>
@@ -43,4 +54,3 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 	</table>
 </form>
 </right>
-<?php include ("foot.php"); ?>
