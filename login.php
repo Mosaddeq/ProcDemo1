@@ -28,6 +28,9 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 		$_SESSION['uType']= 'Instructor';
         header('location: studenthome.php');
 	}
+	else{
+		echo "invalid user";
+	}
 }
 
 
