@@ -44,7 +44,7 @@
     <label>Name:</label> <br>
 	<input  id="name" type="text" name="name" value="" class="form-control" placeholder="Full Name"/>
 	<span class="error">* <?php echo $nameErr;?></span>	
-	<span id="name"	class="text-danger font-witght-bold"></span>							<! display errors on html page>
+	<span id="nameErr"	class="text-danger font-witght-bold"></span>							<! display errors on html page>
 	<br>
 	<br>
 	<label>Email:</label> <br>
@@ -100,7 +100,7 @@
 
 			if (name == "")
 			{
-				document.getElementById('name').innerHTML = "JS works"
+				document.getElementById('nameErr').innerHTML = "JS works"
 				error_is = 1;
 			}
 			}
